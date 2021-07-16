@@ -6,41 +6,26 @@
 
 <p>This component demonstrates fetching data from the server.</p>
 
-@if (forecasts == null)
-{
-    <p><em>Loading...</em></p>
-}
-else
-{
-    <table class="table">
-        <thead>
+<input @bind-value="city"/> 
+<button @onclick="@GetRestaurants">Search</button>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Resturant Name</th>
+            <th>City</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var restaurant in restaurants)
+        {
             <tr>
-                <th>Date</th>
-                <th>Temp. (C)</th>
-                <th>Temp. (F)</th>
-                <th>Summary</th>
+                <td>@restaurant.Name</td>
+                <td>@restaurant.City</td>
+
             </tr>
-        </thead>
-        <tbody>
-            @foreach (var forecast in forecasts)
-            {
-                <tr>
-                    <td>@forecast.Date.ToShortDateString()</td>
-                    <td>@forecast.TemperatureC</td>
-                    <td>@forecast.TemperatureF</td>
-                    <td>@forecast.Summary</td>
-                </tr>
-            }
-        </tbody>
-    </table>
-}
+        }
+    </tbody>
+</table>
 
-@code {
-    private WeatherForecast[] forecasts;
 
-    protected override async Task OnInitializedAsync()
-    {
-        forecasts = await Http.GetFromJsonAsync<WeatherForecast[]>("WeatherForecast");
-    }
-
-}
