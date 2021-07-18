@@ -20,13 +20,13 @@ namespace RestaurantReservation.Domain.Repositories
 
         }
 
-        public async Task<AccountDto> LoginAsync(LoginAction action)
+        public async Task<AccountDto> LoginAsync(AccountDto account)
         {
-            action.Password = GenerateHash(action.Password);
+            account.Password = GenerateHash(account.Password);
             
 
             using var conn = Connection;
-            return await conn.QueryFirstOrDefaultAsync<AccountDto>(AccountCommands.Login, new { action.Email, action.Password });
+            return await conn.QueryFirstOrDefaultAsync<AccountDto>(AccountCommands.Login, new { account.Email, account.Password });
 
 
         }

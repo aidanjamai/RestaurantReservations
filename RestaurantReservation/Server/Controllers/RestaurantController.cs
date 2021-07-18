@@ -24,5 +24,17 @@ namespace RestaurantReservation.Server.Controllers
             var dtos = await restaurants.GetRestaurantsByCityAsync(city);
             return Ok(dtos);
         }
+        [HttpGet("by-state/{state}")]
+        public async Task<IActionResult> GetRestaurantsByState([FromRoute] string state)
+        {
+            var dtos = await restaurants.GetRestaurantsByStateAsync(state);
+            return Ok(dtos);
+        }
+        [HttpGet("by-cuisine/{cuisine}")]
+        public async Task<IActionResult> GetRestaurantsByCuisine([FromRoute] string cuisine)
+        {
+            var dtos = await restaurants.GetRestaurantsByCuisineAsync(cuisine);
+            return Ok(dtos);
+        }
     }
 }

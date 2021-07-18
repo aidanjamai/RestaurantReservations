@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using ReservationReservation.Server.Services;
 using RestaurantReservation.Domain.Repositories;
 using RestaurantReservation.ViewModels.Actions;
+using RestaurantReservation.ViewModels.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,10 +28,10 @@ namespace RestaurantReservation.Server.Controllers
         }
 
         [HttpPost("login")]
-        public async Task<IActionResult> Login( LoginAction action)
+        public async Task<IActionResult> Login( AccountDto login)
         {
 
-            var dto = await account.LoginAsync(action);
+            var dto = await account.LoginAsync(login);
             if(dto == null)
                 return Unauthorized();
             var token = jwt.GenerateSecurityToken(dto.Id);

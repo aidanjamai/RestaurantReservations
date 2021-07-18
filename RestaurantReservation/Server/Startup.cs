@@ -34,6 +34,7 @@ namespace RestaurantReservation.Server
             services.AddScoped<JwtService>();
             services.AddScoped<RestaurantRepository>();
             services.AddScoped<ReservationRepository>();
+            services.AddScoped<AccountRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
