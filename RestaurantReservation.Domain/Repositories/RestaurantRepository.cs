@@ -25,5 +25,21 @@ namespace RestaurantReservation.Domain.Repositories
 
            
         }
+
+        public async Task<IEnumerable<RestaurantDto>> GetRestaurantsByStateAsync(string state)
+        {
+            using var conn = Connection;
+            return await conn.QueryAsync<RestaurantDto>(RestaurantCommands.GetRestaurantsByState, new { state });
+
+
+        }
+
+        public async Task<IEnumerable<RestaurantDto>> GetRestaurantsByCuisineAsync(string cuisine)
+        {
+            using var conn = Connection;
+            return await conn.QueryAsync<RestaurantDto>(RestaurantCommands.GetRestaurantsByCuisine, new { cuisine });
+
+
+        }
     }
 }

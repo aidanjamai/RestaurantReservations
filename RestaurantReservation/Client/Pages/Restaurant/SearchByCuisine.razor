@@ -1,0 +1,30 @@
+﻿@page "/SearchByCuisine"
+@using RestaurantReservation.Shared
+@inject HttpClient Http
+
+<h1>Weather forecast</h1>
+
+<p>This component demonstrates fetching data from the server.</p>
+
+<input @bind-value="cuisine" />
+<button @onclick="@GetRestaurants">Search</button>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Resturant Name</th>
+            <th>Cuisine</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var restaurant in restaurants)
+        {
+            <tr>
+                <td>@restaurant.Name</td>
+                <td>@restaurant.Cuisine</td>
+
+            </tr>
+        }
+    </tbody>
+</table>

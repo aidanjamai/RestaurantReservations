@@ -5,7 +5,9 @@ using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using ReservationReservation.Server.Services;
 using RestaurantReservation.Domain.Repositories;
+using RestaurantReservation.Server.Services;
 using System.Linq;
 
 namespace RestaurantReservation.Server
@@ -27,8 +29,11 @@ namespace RestaurantReservation.Server
 
             services.AddControllersWithViews();
             services.AddRazorPages();
+            services.AddTokenAuthentication(Configuration);
 
+            services.AddScoped<JwtService>();
             services.AddScoped<RestaurantRepository>();
+            services.AddScoped<ReservationRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
