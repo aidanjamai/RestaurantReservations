@@ -30,8 +30,8 @@ namespace RestaurantReservation.Server.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Login( AccountDto login)
         {
-
-            var dto = await account.LoginAsync(login);
+            
+            AccountDto dto = await account.LoginAsync(login);
             if(dto == null)
                 return Unauthorized();
             var token = jwt.GenerateSecurityToken(dto.Id);
@@ -39,6 +39,15 @@ namespace RestaurantReservation.Server.Controllers
             return Ok(token);
         }
 
-       
+        [HttpPost("register")]
+        public async Task<IActionResult> Register(AccountDto register)
+        {
+            //Console.WriteLine(login.Email);
+            await account.RegisterAsync(register);
+
+            return Ok();
+        }
+
+
     }
 }

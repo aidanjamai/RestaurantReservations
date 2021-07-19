@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RestaurantReservation.Share
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RestaurantReservation.ViewModels", "RestaurantReservation.ViewModels\RestaurantReservation.ViewModels.csproj", "{3D3B68AF-F6D9-420C-8EE7-9D7DA16F55FC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestaurantReservation.Domain", "RestaurantReservation.Domain\RestaurantReservation.Domain.csproj", "{EA0CD3AD-E712-4735-B7F4-3F5B0F54068A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RestaurantReservation.Domain", "RestaurantReservation.Domain\RestaurantReservation.Domain.csproj", "{EA0CD3AD-E712-4735-B7F4-3F5B0F54068A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

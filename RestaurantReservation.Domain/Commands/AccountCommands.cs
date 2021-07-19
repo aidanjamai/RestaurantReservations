@@ -23,5 +23,8 @@ namespace RestaurantReservation.Domain.Commands
                 HouseNumber 
             FROM Account 
             WHERE Email = @Email AND Password = @Password";
+
+        public const string Register = @"Insert into Account values  ( @Id, @Password, @FirstName, @MiddleInitial, @LastName, @Email, @PhoneNumber, @State, @Zip, @City, @Street, @HouseNumber)";
     }
+
 }

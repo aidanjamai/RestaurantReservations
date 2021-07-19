@@ -31,11 +31,22 @@ namespace RestaurantReservation.Domain.Repositories
 
         }
 
+        public async Task RegisterAsync(AccountDto account)
+        {
+            account.Password = GenerateHash(account.Password);
+            account.Id = Guid.NewGuid();
+
+            using var conn = Connection;
+            await conn.ExecuteAsync(AccountCommands.Register, account);
+
+
+        }
+
         public string GenerateHash(string password)
         {
-            var data = Encoding.UTF8.GetBytes(password);
+            var data = Encoding.ASCII.GetBytes(password);
             data = new SHA256Managed().ComputeHash(data);
-            return Encoding.UTF8.GetString(data);
+            return Encoding.ASCII.GetString(data);
 
 
 
