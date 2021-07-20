@@ -5,9 +5,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Net.Http.Json;
+using Microsoft.AspNetCore.Authorization;
 
 namespace RestaurantReservation.Client.Pages.Restaurant
 {
+    
     public partial class SearchByCity : ComponentBase
     {
         private string city;

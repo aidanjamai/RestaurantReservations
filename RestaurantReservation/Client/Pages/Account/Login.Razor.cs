@@ -37,7 +37,10 @@ namespace RestaurantReservation.Client.Pages.Account
                 Console.WriteLine(action.Email);
                 Console.WriteLine(action.Password);
                 await Http.PostAsJsonAsync("api/Account/login", action);
-                
+                Console.WriteLine(action.Email);
+                loading = false;
+
+
             }
             catch (Exception ex)
             {
