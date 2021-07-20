@@ -10,7 +10,7 @@ namespace RestaurantReservation.Client.Pages.Reservation
 {
     public partial class ByMonth : ComponentBase
     {
-        private string month;
+        private int month;
         private List<ReservationDto> reservations = new();
 
         private async void GetReservations()

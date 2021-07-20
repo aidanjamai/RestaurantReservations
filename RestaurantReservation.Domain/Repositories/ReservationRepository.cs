@@ -24,7 +24,7 @@ namespace RestaurantReservation.Domain.Repositories
 
 
         }
-        public async Task<IEnumerable<ReservationDto>> GetReservationsByMonthAsync(string month)
+        public async Task<IEnumerable<ReservationDto>> GetReservationsByMonthAsync(int month)
         {
             using var conn = Connection;
             return await conn.QueryAsync<ReservationDto>(ReservationCommands.GetReservationsByMonth, new { month });

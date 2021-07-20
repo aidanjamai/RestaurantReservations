@@ -34,6 +34,7 @@ namespace RestaurantReservation.Server
             services.AddScoped<JwtService>();
             services.AddScoped<RestaurantRepository>();
             services.AddScoped<ReservationRepository>();
+            services.AddScoped<ReviewRepository>();
             services.AddScoped<AccountRepository>();
         }
 

@@ -1,0 +1,65 @@
+﻿@page "/CreateRest"
+@using System.ComponentModel.DataAnnotations
+
+@inject NavigationManager NavigationManager
+@inject HttpClient Http
+
+<div class="col-md-6 offset-md-3 mt-5">
+
+    <div class="card">
+        <h4 class="card-header">Create Restaurant</h4>
+        <div class="card-body">
+            <EditForm Model="@action" OnValidSubmit="HandleValidSubmit">
+                <DataAnnotationsValidator />
+                <div class="form-group">
+                    <label>Name</label>
+                    <InputText @bind-Value="action.Name" type="email" class="form-control" />
+                    <ValidationMessage For="@(() => action.Name)" />
+                </div>
+                <div class="form-group">
+                    <label>State</label>
+                    <InputText @bind-Value="action.State"  class="form-control" />
+                    <ValidationMessage For="@(() => action.State)" />
+                </div>
+                <div class="form-group">
+                    <label>Zip</label>
+                    <InputText @bind-Value="action.Zip"  class="form-control" />
+                    <ValidationMessage For="@(() => action.Zip)" />
+                </div>
+                <div class="form-group">
+                    <label>City</label>
+                    <InputText @bind-Value="action.City" class="form-control" />
+                    <ValidationMessage For="@(() => action.City)" />
+                </div>
+                <div class="form-group">
+                    <label>Street</label>
+                    <InputText @bind-Value="action.Street" class="form-control" />
+                    <ValidationMessage For="@(() => action.Street)" />
+                </div>
+                <div class="form-group">
+                    <label>HouseNumber</label>
+                    <InputText @bind-Value="action.HouseNumber" class="form-control" />
+                    <ValidationMessage For="@(() => action.HouseNumber)" />
+                </div>
+                <div class="form-group">
+                    <label>Cuisine</label>
+                    <InputText @bind-Value="action.Cuisine" class="form-control" />
+                    <ValidationMessage For="@(() => action.Cuisine)" />
+                </div>
+                
+                
+                <button class="btn btn-primary">
+                    @if (loading)
+                    {
+                        <span class="spinner-border spinner-border-sm mr-1"></span>
+                    }
+                    Create Restaurant
+                </button>
+                @if (!string.IsNullOrEmpty(error))
+                {
+                    <div class="alert alert-danger mt-3 mb-0">@error</div>
+                }
+            </EditForm>
+        </div>
+    </div>
+</div>

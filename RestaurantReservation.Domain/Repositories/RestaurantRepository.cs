@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Security.Cryptography;
 
 
 namespace RestaurantReservation.Domain.Repositories
@@ -41,5 +42,16 @@ namespace RestaurantReservation.Domain.Repositories
 
 
         }
+        public async Task CreateRestAsync(RestaurantDto restaurant)
+        {
+
+            restaurant.Id = Guid.NewGuid();
+            //need to add authorized usersid  
+            using var conn = Connection;
+            await conn.ExecuteAsync(RestaurantCommands.CreateRest, restaurant);
+
+
+        }
+
     }
 }

@@ -21,16 +21,16 @@ namespace ReservationReservation.Server.Controllers
             this.reservation = reservation;
         }
         [HttpGet("by-restaurant/{restaurant}")]
-        public async Task<IActionResult> GetReservationsByCity([FromRoute] string restaurant)
+        public async Task<IActionResult> GetReservationsByRest([FromRoute] string restaurant)
         {
             var dtos = await reservation.GetReservationsByRestAsync(restaurant);
             return Ok(dtos);
         }
 
         [HttpGet("by-month/{month}")]
-        public async Task<IActionResult> GetReservationsBymonth([FromRoute] string month)
+        public async Task<IActionResult> GetReservationsBymonth([FromRoute] int month)
         {
-            var dtos = await reservation.GetReservationsByRestAsync(month);
+            var dtos = await reservation.GetReservationsByMonthAsync(month);
             return Ok(dtos);
         }
 
