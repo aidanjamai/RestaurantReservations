@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ReservationReservation.Server.Controllers
 {
-    [Authorize]
+    
     [Route("api/[controller]")]
     [ApiController]
     public class ReservationController : ControllerBase
