@@ -1,0 +1,47 @@
+﻿
+@page "/CreateReview"
+@using System.ComponentModel.DataAnnotations
+
+@inject NavigationManager NavigationManager
+@inject HttpClient Http
+
+<div class="col-md-6 offset-md-3 mt-5">
+
+    <div class="card">
+        <h4 class="card-header">Create Review</h4>
+        <div class="card-body">
+            <EditForm Model="@action" OnValidSubmit="HandleValidSubmit">
+                <DataAnnotationsValidator />
+                <div class="form-group">
+                    <label>Restaurant</label>
+                    <InputText @bind-Value="action.Name" class="form-control" />
+                    <ValidationMessage For="@(() => action.Name)" />
+                </div>
+                <div class="form-group">
+                    <label>Rating</label>
+                    <InputNumber @bind-Value="action.Rating" class="form-control" />
+                    <ValidationMessage For="@(() => action.Rating)" />
+                </div>
+                <div class="form-group">
+                    <label>Comments</label>
+                    <InputText @bind-Value="action.Comments" class="form-control" />
+                    <ValidationMessage For="@(() => action.Comments)" />
+                </div>
+                
+
+
+                <button class="btn btn-primary">
+                    @if (loading)
+                    {
+                        <span class="spinner-border spinner-border-sm mr-1"></span>
+                    }
+                    Create Review
+                </button>
+                @if (!string.IsNullOrEmpty(error))
+                {
+                    <div class="alert alert-danger mt-3 mb-0">@error</div>
+                }
+            </EditForm>
+        </div>
+    </div>
+</div>

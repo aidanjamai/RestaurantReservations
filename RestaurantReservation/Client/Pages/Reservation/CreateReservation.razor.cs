@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components;
 using RestaurantReservation.Client.Helpers;
 using RestaurantReservation.Client.Services;
-using RestaurantReservation.ViewModels.DTOs;
+using RestaurantReservation.ViewModels.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,21 +9,17 @@ using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 
-namespace RestaurantReservation.Client.Pages.Restaurant
+namespace RestaurantReservation.Client.Pages.Reservation
 {
-    public partial class CreateRest : ComponentBase
+    public partial class CreateReservation : ComponentBase
     {
-        private RestaurantDto action = new RestaurantDto();
+        private RestIdResView action = new RestIdResView();
         private bool loading;
         private string error;
 
         protected override void OnInitialized()
         {
-            // redirect to home if already logged in
-            /*if (AuthenticationService.User != null)
-            {
-                NavigationManager.NavigateTo("");
-            }*/
+
         }
 
         private async void HandleValidSubmit()
@@ -33,10 +29,10 @@ namespace RestaurantReservation.Client.Pages.Restaurant
             {
 
 
-                var createRest = await Http.PostAsJsonAsync("api/Restaurant/CreateRest", action);
+                var createReservation = await Http.PostAsJsonAsync("api/Reservation/CreateReservation", action);
                 loading = false;
                 StateHasChanged();
-                CreateRestHandler(createRest);
+                CreateReservationHandler(createReservation);
 
             }
             catch (Exception ex)
@@ -47,14 +43,14 @@ namespace RestaurantReservation.Client.Pages.Restaurant
             }
         }
 
-        private async void CreateRestHandler(HttpResponseMessage createRest)
+        private async void CreateReservationHandler(HttpResponseMessage createReservation)
         {
-            if (createRest.IsSuccessStatusCode)
+            if (createReservation.IsSuccessStatusCode)
             {
-                AuthorizationService.Token = await createRest.Content.ReadAsStringAsync();
+                AuthorizationService.Token = await createReservation.Content.ReadAsStringAsync();
                 
             }
         }
-
+    
     }
 }

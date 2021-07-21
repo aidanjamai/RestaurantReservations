@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components;
 using RestaurantReservation.Client.Helpers;
 using RestaurantReservation.Client.Services;
-using RestaurantReservation.ViewModels.DTOs;
+using RestaurantReservation.ViewModels.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,21 +9,17 @@ using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 
-namespace RestaurantReservation.Client.Pages.Restaurant
+namespace RestaurantReservation.Client.Pages.Review
 {
-    public partial class CreateRest : ComponentBase
+    public partial class CreateReview : ComponentBase
     {
-        private RestaurantDto action = new RestaurantDto();
+        private RestIdView action = new RestIdView();
         private bool loading;
         private string error;
 
         protected override void OnInitialized()
         {
-            // redirect to home if already logged in
-            /*if (AuthenticationService.User != null)
-            {
-                NavigationManager.NavigateTo("");
-            }*/
+            
         }
 
         private async void HandleValidSubmit()
@@ -33,10 +29,10 @@ namespace RestaurantReservation.Client.Pages.Restaurant
             {
 
 
-                var createRest = await Http.PostAsJsonAsync("api/Restaurant/CreateRest", action);
+                var createReview = await Http.PostAsJsonAsync("api/Review/CreateReview", action);
                 loading = false;
                 StateHasChanged();
-                CreateRestHandler(createRest);
+                CreateReviewHandler(createReview);
 
             }
             catch (Exception ex)
@@ -47,11 +43,11 @@ namespace RestaurantReservation.Client.Pages.Restaurant
             }
         }
 
-        private async void CreateRestHandler(HttpResponseMessage createRest)
+        private async void CreateReviewHandler(HttpResponseMessage createReview)
         {
-            if (createRest.IsSuccessStatusCode)
+            if (createReview.IsSuccessStatusCode)
             {
-                AuthorizationService.Token = await createRest.Content.ReadAsStringAsync();
+                AuthorizationService.Token = await createReview.Content.ReadAsStringAsync();
                 
             }
         }

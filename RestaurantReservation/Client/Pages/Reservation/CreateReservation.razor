@@ -1,0 +1,52 @@
+﻿
+@page "/CreateReservation"
+@using System.ComponentModel.DataAnnotations
+
+@inject NavigationManager NavigationManager
+@inject HttpClient Http
+
+<div class="col-md-6 offset-md-3 mt-5">
+
+    <div class="card">
+        <h4 class="card-header">Create Reservation</h4>
+        <div class="card-body">
+            <EditForm Model="@action" OnValidSubmit="HandleValidSubmit">
+                <DataAnnotationsValidator />
+                <div class="form-group">
+                    <label>Restaurant</label>
+                    <InputText @bind-Value="action.Name" class="form-control" />
+                    <ValidationMessage For="@(() => action.Name)" />
+                </div>
+                <div class="form-group">
+                    <label>Date</label>
+                    <InputDate @bind-Value="action.Date" class="form-control" />
+                    <ValidationMessage For="@(() => action.Date)" />
+                </div>
+                <div class="form-group">
+                    <label>Location</label>
+                    <InputText @bind-Value="action.Location" class="form-control" />
+                    <ValidationMessage For="@(() => action.Location)" />
+                </div>
+                <div class="form-group">
+                    <label>PartySize</label>
+                    <InputNumber @bind-Value="action.PartySize" class="form-control" />
+                    <ValidationMessage For="@(() => action.PartySize)" />
+                </div>
+
+
+
+                <button class="btn btn-primary">
+                    @if (loading)
+                    {
+                        <span class="spinner-border spinner-border-sm mr-1"></span>
+                    }
+                    Create Reservation
+                </button>
+                @if (!string.IsNullOrEmpty(error))
+                {
+                    <div class="alert alert-danger mt-3 mb-0">@error</div>
+                }
+            </EditForm>
+        </div>
+    </div>
+</div>

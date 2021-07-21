@@ -39,5 +39,24 @@ namespace RestaurantReservation.Domain.Repositories
 
 
         }
+
+        public async Task CreateReservationAsync(RestIdResView data)
+        {
+            ReservationDto reservation = new();
+            reservation.Id = Guid.NewGuid();
+            reservation.Date = data.Date;
+            reservation.Location = data.Location;
+            reservation.PartySize = data.PartySize;
+            reservation.Confirmed = data.Confirmed;
+            reservation.UserId = data.UserId;
+
+            using var conn = Connection;
+            var RestaurantId = await conn.QueryFirstOrDefaultAsync<RestIdView>(ReviewCommands.RestId, new { data.Name });
+
+            reservation.RestaurantId = RestaurantId.Id;
+            await conn.ExecuteAsync(ReservationCommands.CreateReservation, reservation);
+
+
+        }
     }
 }

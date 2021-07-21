@@ -10,7 +10,7 @@ namespace RestaurantReservation.ViewModels.DTOs
     {
         public Guid Id { get; set; }
         public Guid UserId { get; set; }
-        public DateTime Date { get; set; }
+        public DateTime Date { get; set; } = DateTime.Now;
         public string Location { get; set; }
         public int PartySize { get; set; }
         public bool Confirmed { get; set; }

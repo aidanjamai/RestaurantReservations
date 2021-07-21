@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using RestaurantReservation.Domain.Repositories;
+using RestaurantReservation.ViewModels.DTOs;
+using RestaurantReservation.ViewModels.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +23,19 @@ namespace RestaurantReservation.Server.Controllers
         public async Task<IActionResult> GetReviewsByRest([FromRoute] string rest)
         {
             var dtos = await reviews.GetReviewsByRestAsync(rest);
+
             return Ok(dtos);
+        }
+
+        [HttpPost("CreateReview")]
+        public async Task<IActionResult> CreateReview(RestIdView review)
+        {
+            
+
+            review.UserId = Guid.Parse(User.FindFirst("UserId").Value);
+            await reviews.CreateReviewAsync(review);
+
+            return Ok();
         }
     }
 }

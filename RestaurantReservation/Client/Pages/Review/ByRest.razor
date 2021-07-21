@@ -4,7 +4,6 @@
 
 <h1>Search Reviews by Restaurant</h1>
 
-<p>This component demonstrates fetching data from the server.</p>
 
 <input @bind-value="rest" />
 <button @onclick="@GetReviews">Search</button>
@@ -12,24 +11,29 @@
 <table class="table">
     <thead>
         <tr>
+            <th>Name</th>
+            <th>FirstName</th>
+            <th>Email</th>
             <th>Rating</th>
             <th>Comments</th>
-            
+
 
         </tr>
     </thead>
     <tbody>
         @foreach (var review in reviews)
         {
-            <tr>
+        <tr>
+            <td>@review.Name</td>
+            <td>@review.FirstName</td>
+            <td>@review.Email</td>
+            <td>@review.Rating</td>
+            <td>@review.Comments</td>
 
-                <td>@review.Rating</td>
-                <td>@review.Comments</td>
 
 
 
-
-            </tr>
+        </tr>
         }
     </tbody>
 </table>

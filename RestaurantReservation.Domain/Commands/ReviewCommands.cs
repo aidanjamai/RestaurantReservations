@@ -8,7 +8,10 @@ namespace RestaurantReservation.Domain.Commands
 {
     public static class ReviewCommands
     {
-        public const string GetReviewsByRest = @"SELECT * FROM Review JOIN Restaurant ON Review.RestaurantId = Restaurant.Id WHERE Name = @Rest";
+        public const string GetReviewsByRest = @"SELECT * FROM RestUserReview WHERE Name = @Rest";
+        public const string RestId = @"SELECT Restaurant.Id FROM Restaurant WHERE Name = @Name";
+        public const string CreateReview = @"Insert into Review values  ( @Id, @RestaurantId, @UserId, @Rating, @Comments)";
+        
 
     }
 }
