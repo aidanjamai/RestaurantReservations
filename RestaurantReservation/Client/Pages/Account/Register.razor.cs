@@ -1,8 +1,11 @@
 ﻿using Microsoft.AspNetCore.Components;
+using RestaurantReservation.Client.Helpers;
+using RestaurantReservation.Client.Services;
 using RestaurantReservation.ViewModels.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 
@@ -29,10 +32,14 @@ namespace RestaurantReservation.Client.Pages.Account
             try
             {
                 
-                Console.WriteLine(action.Email);
-                Console.WriteLine(action.Password);
-                await Http.PostAsJsonAsync("api/Account/Register", action);
+                
+                var register = await Http.PostAsJsonAsync("api/Account/Register", action);
                 loading = false;
+                StateHasChanged();
+                RegisterHandler(register);
+
+
+
 
             }
             catch (Exception ex)
@@ -40,6 +47,16 @@ namespace RestaurantReservation.Client.Pages.Account
                 error = ex.Message;
                 loading = false;
                 StateHasChanged();
+            }
+        }
+
+        private async void RegisterHandler(HttpResponseMessage register)
+        {
+            if (register.IsSuccessStatusCode)
+            {
+                AuthorizationService.Token = await register.Content.ReadAsStringAsync();
+                var returnUrl = NavigationManager.QueryString("returnUrl") ?? "/";
+                NavigationManager.NavigateTo(returnUrl);
             }
         }
 

@@ -1,0 +1,19 @@
+﻿@page "/logout"
+
+@using RestaurantReservation.Client.Services;
+@using RestaurantReservation.Client.Helpers;
+@inject NavigationManager NavigationManager
+
+
+
+@code {
+
+    protected override void OnInitialized()
+    {
+        AuthorizationService.Token = null;
+        var returnUrl = NavigationManager.QueryString("returnUrl") ?? "/";
+        NavigationManager.NavigateTo(returnUrl);
+
+    }
+
+}

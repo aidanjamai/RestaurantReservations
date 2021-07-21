@@ -35,6 +35,7 @@ namespace RestaurantReservation.Server.Controllers
             if(dto == null)
                 return Unauthorized();
             var token = jwt.GenerateSecurityToken(dto.Id);
+
             
             return Ok(token);
         }

@@ -46,6 +46,7 @@ namespace RestaurantReservation.Domain.Repositories
         {
 
             restaurant.Id = Guid.NewGuid();
+            
             //need to add authorized usersid  
             using var conn = Connection;
             await conn.ExecuteAsync(RestaurantCommands.CreateRest, restaurant);

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ReservationReservation.Server.Controllers
 {
-    
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ReservationController : ControllerBase
@@ -20,6 +20,7 @@ namespace ReservationReservation.Server.Controllers
         {
             this.reservation = reservation;
         }
+        
         [HttpGet("by-restaurant/{restaurant}")]
         public async Task<IActionResult> GetReservationsByRest([FromRoute] string restaurant)
         {

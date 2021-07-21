@@ -12,9 +12,11 @@
 <table class="table">
     <thead>
         <tr>
+            <th>Restaurant</th>
             <th>Date</th>
             <th>PartySize</th>
             <th>Location</th>
+            <th>City</th>
 
         </tr>
     </thead>
@@ -22,10 +24,11 @@
         @foreach (var reservation in reservations)
         {
         <tr>
-
+            <td>@reservation.RestaurantName</td>
             <td>@reservation.Date</td>
             <td>@reservation.PartySize</td>
             <td>@reservation.Location</td>
+            <td>@reservation.City</td>
 
 
 

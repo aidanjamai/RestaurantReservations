@@ -27,10 +27,12 @@ namespace RestaurantReservation.Server.Services
                 x.TokenValidationParameters = new TokenValidationParameters
                 {
                     IssuerSigningKey = new SymmetricSecurityKey(key),
-                    ValidateIssuer = true,
-                    ValidateAudience = true,
+                    ValidateIssuer = false,
+                    ValidateAudience = false,
+                    ValidateIssuerSigningKey = true,
                     ValidIssuer = "localhost",
-                    ValidAudience = "localhost"
+                    ValidAudience = "localhost",
+                    
                 };
             });
 

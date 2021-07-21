@@ -8,9 +8,9 @@ namespace RestaurantReservation.Domain.Commands
 {
     public static class ReservationCommands
     {
-        public const string GetReservationsByRest = @"SELECT * FROM Reservation JOIN Restaurant ON Reservation.RestaurantId = Restaurant.Id WHERE Name = @Restaurant";
+        public const string GetReservationsByRest = @"SELECT * FROM RestarantReservations WHERE RestaurantName = @Restaurant";
         public const string GetReservationsByMonth = @"SELECT * FROM Reservation WHERE DATEPART(month, Date) = @Month";
-        public const string GetReservationsByName = @"SELECT * FROM Reservation JOIN Account ON Reservation.UserId = Account.Id WHERE FirstName = @Name";
+        public const string GetReservationsByName = @"SELECT * FROM UserReservations WHERE FirstName = @Name";
 
     }
 }

@@ -43,6 +43,8 @@ namespace RestaurantReservation.Server.Controllers
         public async Task<IActionResult> CreateRest(RestaurantDto rest)
         {
             //Console.WriteLine(login.Email);
+            
+            rest.AdminId = Guid.Parse(User.FindFirst("UserId").Value);
             await restaurants.CreateRestAsync(rest);
 
             return Ok();

@@ -1,8 +1,11 @@
 ﻿using Microsoft.AspNetCore.Components;
+using RestaurantReservation.Client.Helpers;
+using RestaurantReservation.Client.Services;
 using RestaurantReservation.ViewModels.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 
@@ -30,8 +33,10 @@ namespace RestaurantReservation.Client.Pages.Restaurant
             {
 
 
-                await Http.PostAsJsonAsync("api/Restaurant/CreateUser", action);
+                var createRest = await Http.PostAsJsonAsync("api/Restaurant/CreateRest", action);
                 loading = false;
+                StateHasChanged();
+                CreateRestHandler(createRest);
 
             }
             catch (Exception ex)
@@ -39,6 +44,16 @@ namespace RestaurantReservation.Client.Pages.Restaurant
                 error = ex.Message;
                 loading = false;
                 StateHasChanged();
+            }
+        }
+
+        private async void CreateRestHandler(HttpResponseMessage createRest)
+        {
+            if (createRest.IsSuccessStatusCode)
+            {
+                AuthorizationService.Token = await createRest.Content.ReadAsStringAsync();
+                var returnUrl = NavigationManager.QueryString("returnUrl") ?? "/";
+                NavigationManager.NavigateTo(returnUrl);
             }
         }
 

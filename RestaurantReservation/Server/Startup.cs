@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -5,10 +6,12 @@ using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Tokens;
 using ReservationReservation.Server.Services;
 using RestaurantReservation.Domain.Repositories;
 using RestaurantReservation.Server.Services;
 using System.Linq;
+using System.Text;
 
 namespace RestaurantReservation.Server
 {
@@ -36,6 +39,10 @@ namespace RestaurantReservation.Server
             services.AddScoped<ReservationRepository>();
             services.AddScoped<ReviewRepository>();
             services.AddScoped<AccountRepository>();
+
+
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -58,7 +65,8 @@ namespace RestaurantReservation.Server
             app.UseStaticFiles();
 
             app.UseRouting();
-
+            app.UseAuthentication();
+            app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();

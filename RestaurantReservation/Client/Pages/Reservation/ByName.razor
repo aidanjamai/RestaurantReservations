@@ -12,24 +12,31 @@
 <table class="table">
     <thead>
         <tr>
+            <th>FirstName</th>
+            <th>LastName</th>
             <th>Date</th>
             <th>PartySize</th>
             <th>Location</th>
+            <th>PhoneNumber</th>
+            <th>Email</th>
 
         </tr>
     </thead>
     <tbody>
         @foreach (var reservation in reservations)
         {
-            <tr>
+        <tr>
+            <td>@reservation.FirstName</td>
+            <td>@reservation.LastName</td>
+            <td>@reservation.Date</td>
+            <td>@reservation.PartySize</td>
+            <td>@reservation.Location</td>
+            <td>@reservation.PhoneNumber</td>
+            <td>@reservation.Email</td>
 
-                <td>@reservation.Date</td>
-                <td>@reservation.PartySize</td>
-                <td>@reservation.Location</td>
 
 
-
-            </tr>
+        </tr>
         }
     </tbody>
 </table>

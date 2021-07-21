@@ -1,6 +1,7 @@
 ﻿
 using Microsoft.AspNetCore.Components;
 using RestaurantReservation.Client.Helpers;
+using RestaurantReservation.Client.Services;
 using RestaurantReservation.ViewModels.Actions;
 using RestaurantReservation.ViewModels.DTOs;
 using System;
@@ -27,10 +28,7 @@ namespace RestaurantReservation.Client.Pages.Account
         protected override void OnInitialized()
         {
             // redirect to home if already logged in
-            /*if (AuthenticationService.User != null)
-            {
-                NavigationManager.NavigateTo("");
-            }*/
+            
         }
 
         private async void HandleValidSubmit()
@@ -49,6 +47,7 @@ namespace RestaurantReservation.Client.Pages.Account
 
 
 
+
             }
             catch (Exception ex)
             {
@@ -57,14 +56,15 @@ namespace RestaurantReservation.Client.Pages.Account
                 StateHasChanged();
             }
         }
-        private void LoginHandler(HttpResponseMessage login)
+        private async void LoginHandler(HttpResponseMessage login)
         {
             if (login.IsSuccessStatusCode)
             {
-                Console.WriteLine("Success");
-                //authorized = true;
-                /*var returnUrl = NavigationManager.QueryString("returnUrl") ?? "/";*/
-                /*NavigationManager.NavigateTo(returnUrl);*/
+                AuthorizationService.Token = await login.Content.ReadAsStringAsync();
+
+                
+                var returnUrl = NavigationManager.QueryString("returnUrl") ?? "/";
+                NavigationManager.NavigateTo(returnUrl);
             }
         }
     }
