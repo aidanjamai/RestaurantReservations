@@ -51,8 +51,9 @@ namespace RestaurantReservation.Client.Pages.Restaurant
         {
             if (createRest.IsSuccessStatusCode)
             {
-                AuthorizationService.Token = await createRest.Content.ReadAsStringAsync();
-                
+                var returnUrl = NavigationManager.QueryString("returnUrl") ?? "/";
+                NavigationManager.NavigateTo(returnUrl);
+
             }
         }
 

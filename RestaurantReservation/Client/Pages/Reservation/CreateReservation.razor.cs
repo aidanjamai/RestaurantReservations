@@ -43,12 +43,14 @@ namespace RestaurantReservation.Client.Pages.Reservation
             }
         }
 
-        private async void CreateReservationHandler(HttpResponseMessage createReservation)
+        private void CreateReservationHandler(HttpResponseMessage createReservation)
         {
             if (createReservation.IsSuccessStatusCode)
             {
-                AuthorizationService.Token = await createReservation.Content.ReadAsStringAsync();
                 
+                var returnUrl = NavigationManager.QueryString("returnUrl") ?? "/";
+                NavigationManager.NavigateTo(returnUrl);
+
             }
         }
     

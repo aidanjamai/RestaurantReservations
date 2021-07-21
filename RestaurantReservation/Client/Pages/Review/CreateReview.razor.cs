@@ -47,8 +47,9 @@ namespace RestaurantReservation.Client.Pages.Review
         {
             if (createReview.IsSuccessStatusCode)
             {
-                AuthorizationService.Token = await createReview.Content.ReadAsStringAsync();
-                
+                var returnUrl = NavigationManager.QueryString("returnUrl") ?? "/";
+                NavigationManager.NavigateTo(returnUrl);
+
             }
         }
 
